@@ -128,46 +128,113 @@ print("GWAS cleaned:", gwas_clean.shape)
 # 4. KEGG – pathway-driven gene extraction (KGML)
 # ============================================================
 
-KGML_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/hsa05214.xml"
+# KEGG KGML-Gene Symbol Extractor
 
+
+KGML_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/hsa05214.xml"
+OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes.csv"
+
+# Parse KGML
 tree = ET.parse(KGML_FILE)
 root = tree.getroot()
 
-entrez_ids = []
+kegg_entrez_ids = []
 
 for entry in root.findall("entry"):
     if entry.attrib.get("type") == "gene":
-        names = entry.attrib.get("name", "")
-        for gid in names.split():
-            if gid.startswith("hsa:"):
-                entrez_ids.append(gid.replace("hsa:", ""))
+        name_field = entry.attrib.get("name")
+        if name_field:
+            for gid in name_field.split():
+                if gid.startswith("hsa:"):
+                    kegg_entrez_ids.append(gid.replace("hsa:", ""))
 
-entrez_ids = sorted(set(entrez_ids))
+kegg_entrez_ids = sorted(set(kegg_entrez_ids))
 
-# Map Entrez → gene symbol using KEGG REST
-kegg_map = requests.get(
-    "https://rest.kegg.jp/list/hsa"
-).text.strip().split("\n")
+print(f"[INFO] Number of KEGG Entrez IDs extracted: {len(kegg_entrez_ids)}")
+print(f"[INFO] Example Entrez IDs: {kegg_entrez_ids[:10]}")
 
-entrez_to_gene = {}
-for line in kegg_map:
-    eid, desc = line.split("\t", 1)
-    entrez_to_gene[eid.replace("hsa:", "")] = desc.split(";")[0].strip()
+# Entrez ID → Gene Symbol Mapping
+print("[INFO] Downloading KEGG human gene mapping...")
 
-kegg_genes = sorted({
-    entrez_to_gene[e]
-    for e in entrez_ids
-    if e in entrez_to_gene
-})
+kegg_text = requests.get("https://rest.kegg.jp/list/hsa").text.strip().split("\n")
 
-kegg_clean = pd.DataFrame({"gene": kegg_genes})
+entrez_to_symbol = {}
 
-kegg_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes_clean.csv",
-    index=False
+for line in kegg_text:
+    if not line:
+        continue
+    left, right = line.split("\t", 1)
+    entrez = left.replace("hsa:", "").strip()
+    symbol = right.split(";")[0].strip()   # OFFICIAL gene symbol
+    entrez_to_symbol[entrez] = symbol
+
+# Map Entrez IDs
+mapped_symbols = [
+    entrez_to_symbol[e] for e in kegg_entrez_ids if e in entrez_to_symbol
+]
+
+mapped_symbols = sorted(set(mapped_symbols))
+
+print(f"[INFO] Number of gene symbols mapped: {len(mapped_symbols)}")
+print(f"[INFO] Example gene symbols: {mapped_symbols[:10]}")
+
+# Save Clean Gene List
+kegg_df = pd.DataFrame({"gene": mapped_symbols})
+kegg_df.to_csv(OUTPUT_FILE, index=False)
+
+print(f"[SUCCESS] KEGG gene list saved to:\n{OUTPUT_FILE}")
+
+# File paths
+INPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes.csv"
+OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes_clean.csv"
+
+# Load file
+df = pd.read_csv(INPUT_FILE)
+
+# Check data
+print("Raw rows:", df.shape[0])
+print(df.head(3))
+
+def extract_gene_symbol(text):
+    """
+    Extract official gene symbol from KEGG CDS-style annotation
+    """
+    if pd.isna(text):
+        return None
+    
+    text = str(text)
+    
+    # Split by TAB delimiter
+    parts = text.split("\t")
+    if len(parts) < 3:
+        return None
+    
+    # Last field with gene names
+    gene_part = parts[-1]
+    
+    # First name before comma is official symbol
+    symbol = gene_part.split(",")[0].strip()
+    
+    return symbol
+
+# Apply extraction
+df["gene_clean"] = df["gene"].apply(extract_gene_symbol)
+
+# Keep clean gene list
+kegg_clean = (
+    df[["gene_clean"]]
+    .dropna()
+    .drop_duplicates()
+    .rename(columns={"gene_clean": "gene"})
 )
 
-print("KEGG genes extracted:", kegg_clean.shape)
+print("Clean gene count:", kegg_clean.shape[0])
+print("Example genes:", kegg_clean["gene"].head(10).tolist())
+
+# Save
+kegg_clean.to_csv(OUTPUT_FILE, index=False)
+
+print(f"[SUCCESS] Clean KEGG gene list saved to:\n{OUTPUT_FILE}")
 
 
 # ============================================================

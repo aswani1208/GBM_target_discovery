@@ -60,6 +60,54 @@ Based on evidence integration and filtering, the following biologically relevant
 
 These targets were selected based on support from multiple independent evidence sources, strong involvement in GBM relevant pathwyas, known functional relevance in tumor pregression and resistance, and representing both oncogenic drivers and tumor suppressor pathways. 
 
+
+# Task 2: Target Prioritization
+
+After identifying a set of GBM-associated candidate genes, the next step is to prioritize these targets. The objective here is to rank genes to understand why these targets stand out based on different types of supporting evidence.
+
+Simple scoring approach has been choosen to make prioritization east interpret and allows each decision to be linked to biological relevance.
+
+Each target was evaluated using four evidencbased features:
+
+**1. Genetic evidence/Scoring:** Genetic support derived from Open Target and the GWAS catalog was used. Targets supported by human genetic data were given higher importance.
+
+**2. Disease Association (Disease Score):** Curated disease-gene association from DisGeNET were used to capture well-established links reported in expert-reviewed lioterature.
+
+**Pathway Involvement (Pathway SCore):** Genes participating in GBM-relevant signaling pathways were identified using KEGG pathway data. This feature reflects involvement in known oncogenic processes.
+
+**Druggability (Druggability Scre):** open Targets annotations were used as a proxy for therapeutic feasibility, indicating whether a gene has characteristics that make it more likely for pharmacological intervention.
+
+All features were encoded in a binary manner, reflecting the presence or absence of supporting evidence.
+
+## Scoring and Ranking Stratergy
+
+A weighted linear scoring model was used to compute final priority score for each target. Genetic evidence was given the highest weight, followeed by pathway involvement and curated disease knowledge, while druggability was included as a supporting factor.This reflects genetically supported and pathway-relevant targets are more likely to be biologically important in GBM. Targets were ranked based on their composite scores to generate a prioritized list for further downstream analysis.
+
+## Visualization and Interpretation
+
+Target Prioritization Bar Plot: Shows the relative ranking of targets based on their final Priority Score helps to compare overall evidence support.
+
+Feature Contribution Heatmap: Highlights how different evidence types contribute to each target’s score to understand similarities and differences between candidates.
+
+Using this prioritization framework, a small set of highly supported targets including EGFR, PTEN, TP53, and CDKN2A emerged as top candidates. These genes were taken forward for pathway and network level validation in Task 4.
+
+## Assumptions
+
+- Public databases Open Targets, DisGeNET, GWAS Catalog, and KEGG provide reliable and curated disease–gene associations for glioblastoma.
+- Genes supported by multiple independent data sources are more likely to play an important biological role in GBM.
+- Binary evidence flags (presence or absence in a data source) are sufficient for an initial, high-level prioritization.
+- Pathway(KEGG) reflects functional relevance to GBM-related biological processes.
+- Genetic and curated disease evidence are weighted more heavily as they reflect stronger causal or biological support.
+
+## Limitations
+
+- The analysis relies on publicly available datasets, which may be incomplete or biased toward well-studied genes.
+- GWAS evidence for GBM is limited, strict significance thresholds may exclude biologically relevant genes.
+- Binary scoring does not capture the full strength or confidence of individual evidence sources.
+- Druggability was approximated using available annotations and does not account for blood–brain barrier penetration or clinical feasibility.
+- Protein interactions and pathway involvement were not experimentally validated and should be interpreted as hypothesis generating.
+- The scoring framework is simple and designed for interpretability rather than predictive modeling.
+
 ## Reference
 
 https://journals.lww.com/cancerjournal/fulltext/2022/18030/an_overview_of_targets_and_therapies_for.1.aspx
@@ -70,3 +118,4 @@ https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00168-X
 https://pmc.ncbi.nlm.nih.gov/articles/PMC6162501/#:~:text=TP53%20is%20one%20of%20the,apoptosis%2C%20and%20cancer%20cell%20stemness.
 https://pmc.ncbi.nlm.nih.gov/articles/PMC6162501/#:~:text=TP53%20is%20one%20of%20the,apoptosis%2C%20and%20cancer%20cell%20stemness.
 https://www.sciencedirect.com/science/article/pii/S0753332222015931#:~:text=Abstract,regulated%20by%20non%2Dcoding%20RNAs.
+https://pmc.ncbi.nlm.nih.gov/articles/PMC5210543/
