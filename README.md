@@ -49,25 +49,13 @@ Genes supported by three or more independent sources were defined as core candid
 
 Based on evidence integration and filtering, the following biologically relevant targets were shortlisted.
 
-| Target     | Key Biological Role in GBM                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------|
-| **EGFR**   | Frequently amplified or mutated in GBM, which drives growth factor signaling and tumor proliferation. |
-|            | EGFR is overexpressed in ~60% of primary glioblastomas versus only 10% of secondary glioblastomas and |
-|            | is characteristic of more aggressive glioblastoma phenotypes. In addition to overexpression, several  |
-|            | alternative mechanisms account for aberrant induction of EGFR activation in glioblastoma.             |
-| **PTEN**   | Tumor suppressor regulating PI3K–AKT signaling and loss enhances survival signaling.                  |
-|            | PTEN tumor suppressor gene frequently mutated, deleted, or silenced in Glioblastoma (GBM),            |
-|            | particularly in primary (de novo) cases. Its loss activates the PI3K/Akt/mTOR pathway, promoting      |
-|            | tumor proliferation, angiogenesis, and therapy resistance. PTEN status is a key prognostic marker,    |
-|            | with lower expression correlating with poorer GBM patient outcomes.                                   |
-| **TP53**   | Central regulator of DNA damage response, apoptosis, and genomic stability.                           |
-|            | The p53-ARF-MDM2 pathway is deregulated in approximately 84% of GBM patients. TP53 itself is mutated  |
-|            | in roughly 28–30% of primary GBM cases, but this frequency rises significantly to 65–90% in secondary |
-|            | glioblastomas, where it often co-occurs with IDH1 mutations.                                          |
-| **CDKN2A** | Cell cycle regulator inhibiting CDK4/6; deletion leads to uncontrolled proliferation                  |
-|            | The deletion of the CDKN2A tumor suppressor gene is a defining molecular event in Glioblastoma (GBM), |
-|            | occurring in approximately 60% of cases. This genetic alteration not only drives aggressive tumor     |
-|            | growth by dysregulating the cell cycle but also creates a unique metabolic vulnerability—ferroptosis. |
+| Target     | Key Biological Role and Relevance in GBM                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **EGFR**   | Frequently amplified or mutated in GBM, driving aberrant growth factor signaling and tumor proliferation. EGFR is overexpressed in approximately 60% of primary glioblastomas compared to ~10% of secondary glioblastomas and is characteristic of highly aggressive tumor phenotypes. In addition to overexpression, constitutively active variants such as EGFRvIII further enhance oncogenic signaling and therapeutic resistance. |
+| **PTEN**   | Tumor suppressor that negatively regulates the PI3K–AKT–mTOR signaling pathway. PTEN is frequently mutated, deleted, or epigenetically silenced in GBM, particularly in primary (de novo) tumors. Loss of PTEN leads to enhanced cell survival, angiogenesis, metabolic reprogramming, and resistance to therapy. Reduced PTEN expression is associated with poor clinical prognosis.                                                 |
+| **TP53**   | Central regulator of DNA damage response, apoptosis, and genomic stability. The p53–ARF–MDM2 pathway is deregulated in approximately 84% of GBM cases. TP53 mutations occur in ~28–30% of primary GBM and rise to 65–90% in secondary GBM, where they frequently co-occur with IDH1 mutations, contributing to tumor evolution and therapy resistance.                                                                                |
+| **CDKN2A** | Cell cycle regulator encoding p16<sup>INK4A</sup> and p14<sup>ARF</sup>, which inhibit CDK4/6-mediated G1–S phase transition. Homozygous deletion of CDKN2A occurs in ~60% of GBM cases and drives uncontrolled proliferation. Loss of CDKN2A is also linked to metabolic vulnerabilities, including increased sensitivity to ferroptosis, highlighting potential therapeutic opportunities.                                          |
+
 
 
 These targets were selected based on support from multiple independent evidence sources, strong involvement in GBM relevant pathwyas, known functional relevance in tumor pregression and resistance, and representing both oncogenic drivers and tumor suppressor pathways. 
