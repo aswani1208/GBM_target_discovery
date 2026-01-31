@@ -21,7 +21,7 @@ import requests
 # ============================================================
 
 ot = pd.read_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/open_target_gbm.tsv",
+    "D:/Prognica_task-GBM _target_discovery/Target_data/open_target_gbm.tsv",
     sep="\t"
 )
 
@@ -45,7 +45,7 @@ ot_clean = (
 )
 
 ot_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/clean_data/opentargets_clean.csv",
+    "D:/Prognica_task-GBM _target_discovery/clean_data/opentargets_clean.csv",
     index=False
 )
 
@@ -57,7 +57,7 @@ print("Open Targets cleaned:", ot_clean.shape)
 # ============================================================
 
 dg = pd.read_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/disgenet_gbm.tsv",
+    "D:/Prognica_task-GBM _target_discovery/Target_data/disgenet_gbm.tsv",
     sep="\t"
 )
 
@@ -79,7 +79,7 @@ dg_clean = (
 )
 
 dg_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/clean_data/disgenet_clean.csv",
+    "D:/Prognica_task-GBM _target_discovery/clean_data/disgenet_clean.csv",
     index=False
 )
 
@@ -91,7 +91,7 @@ print("DisGeNET cleaned:", dg_clean.shape)
 # ============================================================
 
 gwas = pd.read_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/gwas_catalog_gbm.tsv",
+    "D:/Prognica_task-GBM _target_discovery/Target_data/gwas_catalog_gbm.tsv",
     sep="\t"
 )
 
@@ -117,7 +117,7 @@ else:
     gwas_clean = gwas_sig[["gene"]].drop_duplicates()
 
 gwas_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/clean_data/gwas_clean.csv",
+    "D:/Prognica_task-GBM _target_discovery/clean_data/gwas_clean.csv",
     index=False
 )
 
@@ -131,8 +131,8 @@ print("GWAS cleaned:", gwas_clean.shape)
 # KEGG KGML-Gene Symbol Extractor
 
 
-KGML_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/hsa05214.xml"
-OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
+KGML_FILE = "D:/Prognica_task-GBM _target_discovery/Target_data/hsa05214.xml"
+OUTPUT_FILE = "D:/Prognica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
 
 # Parse KGML
 tree = ET.parse(KGML_FILE)
@@ -185,8 +185,8 @@ kegg_df.to_csv(OUTPUT_FILE, index=False)
 print(f"[SUCCESS] KEGG gene list saved to:\n{OUTPUT_FILE}")
 
 # File paths
-INPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
-OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv"
+INPUT_FILE = "D:/Prognica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
+OUTPUT_FILE = "D:/Prognica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv"
 
 # Load file
 df = pd.read_csv(INPUT_FILE)
@@ -241,10 +241,10 @@ print(f"[SUCCESS] Clean KEGG gene list saved to:\n{OUTPUT_FILE}")
 # 5. INTEGRATION – evidence consolidation across sources
 # ============================================================
 
-ot = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/opentargets_clean.csv")
-dg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/disgenet_clean.csv")
-gwas = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/gwas_clean.csv")
-kegg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv")
+ot = pd.read_csv("D:/Prognica_task-GBM _target_discovery/clean_data/opentargets_clean.csv")
+dg = pd.read_csv("D:/Prognica_task-GBM _target_discovery/clean_data/disgenet_clean.csv")
+gwas = pd.read_csv("D:/Prognica_task-GBM _target_discovery/clean_data/gwas_clean.csv")
+kegg = pd.read_csv("D:/Prognica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv")
 
 # Evidence flags
 ot_f = ot[["gene"]].drop_duplicates().assign(OpenTargets=1)
@@ -272,7 +272,7 @@ master["EvidenceCount"] = (
 
 # Save all targets
 master.sort_values("EvidenceCount", ascending=False).to_csv(
-    "D:/Progenica_task-GBM _target_discovery/results/GBM_all_targets_evidence.csv",
+    "D:/Prognica_task-GBM _target_discovery/results/GBM_all_targets_evidence.csv",
     index=False
 )
 
@@ -280,7 +280,7 @@ master.sort_values("EvidenceCount", ascending=False).to_csv(
 core_targets = master[master["EvidenceCount"] >= 3]
 
 core_targets.sort_values("EvidenceCount", ascending=False).to_csv(
-    "D:/Progenica_task-GBM _target_discovery/results/GBM_core_targets.csv",
+    "D:/Prognica_task-GBM _target_discovery/results/GBM_core_targets.csv",
     index=False
 )
 

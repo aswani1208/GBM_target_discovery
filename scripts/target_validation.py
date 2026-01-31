@@ -1,7 +1,7 @@
 import pandas as pd
 
 df = pd.read_csv(
-    "D:/Progenica_task-GBM _target_discovery/network/string_interactions.tsv",
+    "D:/Prognica_task-GBM _target_discovery/network/string_interactions.tsv",
     sep="\t"
 )
 

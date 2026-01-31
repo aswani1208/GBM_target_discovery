@@ -12,11 +12,11 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 # File paths
-INPUT_FILE = "D:/Progenica_task-GBM _target_discovery/results/GBM_core_targets.csv"
-OUTPUT_TABLE = "D:/Progenica_task-GBM _target_discovery/results/GBM_task2_target_ranking.csv"
+INPUT_FILE = "D:/Prognica_task-GBM _target_discovery/results/GBM_core_targets.csv"
+OUTPUT_TABLE = "D:/Prognica_task-GBM _target_discovery/results/GBM_task2_target_ranking.csv"
 
-BARPLOT_FILE = "D:/Progenica_task-GBM _target_discovery/figures/GBM_Task2_Barplot.png"
-HEATMAP_FILE = "D:/Progenica_task-GBM _target_discovery/figures/GBM_Task2_Heatmap.png"
+BARPLOT_FILE = "D:/Prognica_task-GBM _target_discovery/figures/GBM_Task2_Barplot.png"
+HEATMAP_FILE = "D:/Prognica_task-GBM _target_discovery/figures/GBM_Task2_Heatmap.png"
 
 # Load core targets
 df = pd.read_csv(INPUT_FILE)
