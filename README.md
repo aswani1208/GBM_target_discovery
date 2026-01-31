@@ -62,7 +62,7 @@ Based on evidence integration and filtering, the following biologically relevant
 These targets were selected based on support from multiple independent evidence sources, strong involvement in GBM relevant pathwyas, known functional relevance in tumor pregression and resistance, and representing both oncogenic drivers and tumor suppressor pathways. 
 
 
-## Task 2: Target Prioritization
+# Task 2: Target Prioritization
 
 ## Objective
 
@@ -111,7 +111,7 @@ Using this prioritization framework, a small set of highly supported targets inc
 - Protein interactions and pathway involvement were not experimentally validated and should be interpreted as hypothesis generating.
 - The scoring framework is simple and designed for interpretability rather than predictive modeling.
 
-## Task 4: Target Validation: Pathway & Network Analysis
+# Task 4: Target Validation: Pathway & Network Analysis
 
 ## Objective
 
