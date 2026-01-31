@@ -27,6 +27,7 @@ These challenges highlight the significant clinical need for novel, biology-driv
 
 ## 2. Target Identification Stratergy
 
+## Objective
 Potential drug targets were idnetified using publically available databases and curated resourses, as mentioned in the task description. This will help to capture multiple evidences, including genetic association, curated disease knowledge and pathway-level involvement.
 
 **Open Target platform** -Used to assess disease-Gene association with supporting genetic, functional and clinical evidences 
@@ -37,7 +38,7 @@ Potential drug targets were idnetified using publically available databases and 
 
 Targets were identified from each of these souirces and integrated at the gene level to reduce source-specific bias.
 
-# 3. Evidence integration and Target identification
+## 3. Evidence integration and Target identification
 
 Disease-Gene level evidences from Open Target, DisGeNET, GWAS catalog and KEGG pathway analysis were downloaded, cleaned and integrated into unified dataset. Each gene was assigned binary evidence flags based on its presence in respective data sources. 
 
@@ -45,7 +46,7 @@ An evidence count score calculated for each gene, representing the number of ind
 
 Genes supported by three or more independent sources were defined as core candidate targets and selected for downstream analysis.
 
-# 4. Candidate Targets
+## 4. Candidate Targets
 
 Based on evidence integration and filtering, the following biologically relevant targets were shortlisted.
 
@@ -61,7 +62,9 @@ Based on evidence integration and filtering, the following biologically relevant
 These targets were selected based on support from multiple independent evidence sources, strong involvement in GBM relevant pathwyas, known functional relevance in tumor pregression and resistance, and representing both oncogenic drivers and tumor suppressor pathways. 
 
 
-# Task 2: Target Prioritization
+## Task 2: Target Prioritization
+
+## Objective
 
 After identifying a set of GBM-associated candidate genes, the next step is to prioritize these targets. The objective here is to rank genes to understand why these targets stand out based on different types of supporting evidence.
 
@@ -108,14 +111,56 @@ Using this prioritization framework, a small set of highly supported targets inc
 - Protein interactions and pathway involvement were not experimentally validated and should be interpreted as hypothesis generating.
 - The scoring framework is simple and designed for interpretability rather than predictive modeling.
 
-## Reference
+## Task 4: Target Validation: Pathway & Network Analysis
 
-https://journals.lww.com/cancerjournal/fulltext/2022/18030/an_overview_of_targets_and_therapies_for.1.aspx
-https://www.biorxiv.org/content/10.1101/2025.03.06.641926v2.full
-https://www.sciencedirect.com/science/article/pii/S0031699724012614
-https://pmc.ncbi.nlm.nih.gov/articles/PMC4101015/
-https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00168-X
-https://pmc.ncbi.nlm.nih.gov/articles/PMC6162501/#:~:text=TP53%20is%20one%20of%20the,apoptosis%2C%20and%20cancer%20cell%20stemness.
-https://pmc.ncbi.nlm.nih.gov/articles/PMC6162501/#:~:text=TP53%20is%20one%20of%20the,apoptosis%2C%20and%20cancer%20cell%20stemness.
-https://www.sciencedirect.com/science/article/pii/S0753332222015931#:~:text=Abstract,regulated%20by%20non%2Dcoding%20RNAs.
-https://pmc.ncbi.nlm.nih.gov/articles/PMC5210543/
+## Objective
+
+To validate the shortlisted glioblastoma targets by examining their interaction networks and pathways. Protein–protein interaction (PPI) and pathway analysis were used to understand the biological connectivity, functional importance, and potential safety considerations of the prioritized targets.
+
+## Data Source and Approach
+
+Protein–protein interaction data were obtained from the STRING database, which integrates experimental evidence, curated databases, co-expression patterns, and literature-based associations.
+
+The analysis focused on:
+
+- Core GBM targets identified from Task 1 and Task 2
+- High-confidence interactions (STRING combined score)
+- Interactions directly or indirectly linking GBM-relevant oncogenic pathways
+
+The STRING interaction results were downloaded as a TSV file and processed using Python for filtering and interpretation.
+
+## Network Construction and Filtering
+
+- Nodes represent proteins (genes)
+- Edges represent functional or physical protein–protein interactions
+- Interactions with higher combined confidence scores (>=0.4) were prioritized
+- The network was filtered to retain interactions involving at least one core GBM target
+
+This approach preserves biologically meaningful connections relevant to glioblastoma biology.
+
+## Key Interacting Partners and Network Insights
+
+A protein–protein interaction network was built using STRING to understand how the prioritized GBM targets are connected at the pathway level. The final network contained 14 proteins (nodes) connected by 46 interactions (edges), showing that these proteins are closely linked rather than acting independently.
+
+**Key Interacting Partners**
+
+Among the proteins in the network, TP53, CDKN2A, EGFR, and PTEN showed the highest number of interactions, indicating that they act as central regulators. Other interacting partners such as MGMT and MDM4 were also present, supporting the involvement of DNA repair and p53-related signaling in glioblastoma.
+
+**Mechanism of Action and Safety Considerations**
+
+The network highlights key biological processes such as cell-cycle regulation, growth factor signaling, DNA damage response, and apoptosis. Highly connected proteins like TP53 and EGFR play essential roles in both tumor and normal cellular functions. While this makes them biologically important targets, direct inhibition may also disrupt normal pathways and increase the risk of side effects.To address this, alternative strategies such as targeting downstream signaling components, pathway regulators, or using combination approaches may offer improved tumor specificity while reducing off-target effects.
+
+**Network Centrality and Redundancy**
+
+The high number of interactions within a small network suggests strong centrality of the core targets and limited pathway redundancy. This means that changes to these proteins are likely to have broad effects on tumor behavior, but compensatory signaling through related pathways may still occur.
+
+## References
+
+1. https://journals.lww.com/cancerjournal/fulltext/2022/18030/an_overview_of_targets_and_therapies_for.1.aspx  
+2. https://www.sciencedirect.com/science/article/pii/S0031699724012614  
+3. https://pmc.ncbi.nlm.nih.gov/articles/PMC4101015/  
+4. https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00168-X  
+5. https://pmc.ncbi.nlm.nih.gov/articles/PMC6162501/  
+6. https://www.sciencedirect.com/science/article/pii/S0753332222015931  
+7. https://pmc.ncbi.nlm.nih.gov/articles/PMC5210543/  
+8. https://www.biorxiv.org/content/10.1101/2025.03.06.641926v2.full  
