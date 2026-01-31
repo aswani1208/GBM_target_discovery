@@ -164,3 +164,13 @@ The high number of interactions within a small network suggests strong centralit
 6. https://www.sciencedirect.com/science/article/pii/S0753332222015931  
 7. https://pmc.ncbi.nlm.nih.gov/articles/PMC5210543/  
 8. https://www.biorxiv.org/content/10.1101/2025.03.06.641926v2.full  
+
+
+## Project Structure
+
+- `Target_data/` – Raw input datasets
+- `clean_data/` - Cleaned input data
+- `scripts/` – Python scripts for each task
+- `results/` – Processed outputs and tables
+- `figures/` – Visualization outputs
+- `network/` - String network data

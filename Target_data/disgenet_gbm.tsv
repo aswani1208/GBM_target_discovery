@@ -1,0 +1,11 @@
+ei	numCTs	gene_symbol	numVariantsAssociatedToGene	pli	geneDescription	year_initial	year_final	numberChemsIncludedInEvidence	num_pmids_evid	numDiseasesAssociatedToGene	num_pmid_assoc	score	sourceScore	disease_name	dsi	dpi	num_var_dis
+0.9113300492610837	30	EGFR	648	0.98131	epidermal growth factor receptor	1986	2025	96		2498	1015	1.0		Glioblastoma	0.27	0.91	14
+0.9204693611473272	75	MGMT	80	1.2539E-5	O-6-methylguanine-DNA methyltransferase	1992	2025	103		591	767	1.0		Glioblastoma	0.4	0.91	4
+0.9397590361445783	7	PTEN	1852	0.048008	phosphatase and tensin homolog	1997	2025	40		1945	332	1.0		Glioblastoma	0.3	0.91	1
+0.9085648148148148	19	IDH1	17	9.0901E-5	isocitrate dehydrogenase (NADP(+)) 1	2008	2025	57		803	864	0.95		Glioblastoma	0.39	0.96	3
+0.96	17	VEGFA	49	0.1881	vascular endothelial growth factor A	1992	2025	47		2992	275	0.95		Glioblastoma	0.25	0.96	4
+0.8866666666666667	1	CDKN2A	667	0.61755	cyclin dependent kinase inhibitor 2A	1994	2025	6		1965	150	0.95		Glioblastoma	0.29	0.91	1
+0.9461538461538461	4	PROM1	239	1.1454E-27	prominin 1	2006	2025	9		699	130	0.95		Glioblastoma	0.39	0.96	0
+0.918918918918919	1	MET	1954	0.99984	MET proto-oncogene, receptor tyrosine kinase	1993	2025	11		1195	111	0.95		Glioblastoma	0.34	0.91	0
+0.9809523809523809	1	HIF1A	25	0.99998	hypoxia inducible factor 1 subunit alpha	2002	2025	18		1325	105	0.95		Glioblastoma	0.33	0.96	0
+0.9080459770114943	4	EGF	134	1.2301E-17	epidermal growth factor	1985	2025	12		1385	87	0.95		Glioblastoma	0.33	0.96	1

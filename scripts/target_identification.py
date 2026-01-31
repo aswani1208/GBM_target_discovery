@@ -45,7 +45,7 @@ ot_clean = (
 )
 
 ot_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/opentargets_clean.csv",
+    "D:/Progenica_task-GBM _target_discovery/clean_data/opentargets_clean.csv",
     index=False
 )
 
@@ -79,7 +79,7 @@ dg_clean = (
 )
 
 dg_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/disgenet_clean.csv",
+    "D:/Progenica_task-GBM _target_discovery/clean_data/disgenet_clean.csv",
     index=False
 )
 
@@ -117,7 +117,7 @@ else:
     gwas_clean = gwas_sig[["gene"]].drop_duplicates()
 
 gwas_clean.to_csv(
-    "D:/Progenica_task-GBM _target_discovery/Target_data/gwas_clean.csv",
+    "D:/Progenica_task-GBM _target_discovery/clean_data/gwas_clean.csv",
     index=False
 )
 
@@ -132,7 +132,7 @@ print("GWAS cleaned:", gwas_clean.shape)
 
 
 KGML_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/hsa05214.xml"
-OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes.csv"
+OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
 
 # Parse KGML
 tree = ET.parse(KGML_FILE)
@@ -185,8 +185,8 @@ kegg_df.to_csv(OUTPUT_FILE, index=False)
 print(f"[SUCCESS] KEGG gene list saved to:\n{OUTPUT_FILE}")
 
 # File paths
-INPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes.csv"
-OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes_clean.csv"
+INPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes.csv"
+OUTPUT_FILE = "D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv"
 
 # Load file
 df = pd.read_csv(INPUT_FILE)
@@ -241,10 +241,10 @@ print(f"[SUCCESS] Clean KEGG gene list saved to:\n{OUTPUT_FILE}")
 # 5. INTEGRATION – evidence consolidation across sources
 # ============================================================
 
-ot = pd.read_csv("D:/Progenica_task-GBM _target_discovery/Target_data/opentargets_clean.csv")
-dg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/Target_data/disgenet_clean.csv")
-gwas = pd.read_csv("D:/Progenica_task-GBM _target_discovery/Target_data/gwas_clean.csv")
-kegg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/Target_data/kegg_genes_clean.csv")
+ot = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/opentargets_clean.csv")
+dg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/disgenet_clean.csv")
+gwas = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/gwas_clean.csv")
+kegg = pd.read_csv("D:/Progenica_task-GBM _target_discovery/clean_data/kegg_genes_clean.csv")
 
 # Evidence flags
 ot_f = ot[["gene"]].drop_duplicates().assign(OpenTargets=1)
